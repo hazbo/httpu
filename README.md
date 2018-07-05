@@ -14,11 +14,19 @@ you are able to see what's being sent, and what response you are then getting.
 #### macOS
 
 ```
-brew install hazbo/httpu
+brew tap httpu/httpu
+brew install httpu
 ```
 
-#### Linux x86_64
-
+#### Building from source
+```
+cd $GOPATH
+mkdir -p src/github.com/hazbo
+cd src/github.com/hazbo
+git clone git@github.com:hazbo/httpu.git
+cd httpu
+make
+```
 
 ### Basic usage
 
