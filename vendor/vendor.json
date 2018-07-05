@@ -1,0 +1,147 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "3owzphdIY/TjPSzhb8hh4DKIsaA=",
+			"path": "github.com/buger/jsonparser",
+			"revision": "2cac668e8456b4284edb0715e17e2af02d3ec993",
+			"revisionTime": "2018-03-17T21:08:10Z"
+		},
+		{
+			"checksumSHA1": "dvabztWVQX8f6oMLRyv4dLH+TGY=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/davecgh/go-spew/spew",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "c679ae2cc0cb27ec3293fea7e254e47386f05d69",
+			"revisionTime": "2018-03-14T08:05:35Z"
+		},
+		{
+			"checksumSHA1": "cLCv4pKbndNwX5d0n2A+cZcSJhg=",
+			"path": "github.com/hazbo/httpu",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "Zgfqmv1SC6JyfHCj5N4Vmb1SpIg=",
+			"path": "github.com/hazbo/httpu/api/requests",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "pnCObok+5HpowkXhdvn3NLR63dM=",
+			"path": "github.com/hazbo/httpu/cmd/httpu/commands",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "KtPGfMY7TxihwgBAKsL/TFoEk0M=",
+			"path": "github.com/hazbo/httpu/env",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "7++Zu0BaxNyqGIP31mXyL2O5Wek=",
+			"path": "github.com/hazbo/httpu/meta",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "TZC59z97VZ34hIBmzL+mF91mqOo=",
+			"path": "github.com/hazbo/httpu/resource",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "0t/Rsv4QEujA/6cv3nEnAorzu3A=",
+			"path": "github.com/hazbo/httpu/resource/request",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "c5hBzLMND7U5rCrITOstEaIMXhU=",
+			"path": "github.com/hazbo/httpu/resource/request/headers",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "D7DwPrW65aCucTjkLDD3ZpxVsWo=",
+			"path": "github.com/hazbo/httpu/stash",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "QHnf/2LQtgTX6dHX4OMxJ2IVGAQ=",
+			"path": "github.com/hazbo/httpu/ui",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "WktRokhJIvnJONb8iM2VERTbB1A=",
+			"path": "github.com/hazbo/httpu/ui/printer",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "LDXfMhkkTfUf+EJqFcxKOivkgVg=",
+			"path": "github.com/hazbo/httpu/utils/common",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "xDmbr6cWDfhRJvVk+/3QPc+dBmU=",
+			"path": "github.com/hazbo/httpu/utils/varparser",
+			"revision": "284f16379c0152ec3de39bcd09e14eb29e1e3910",
+			"revisionTime": "2018-07-05T12:59:50Z"
+		},
+		{
+			"checksumSHA1": "o0+6uQDysjh6+RsudtQDW3AOwec=",
+			"path": "github.com/joho/godotenv",
+			"revision": "1709ab122c988931ad53508747b3c061400c2984",
+			"revisionTime": "2018-04-05T05:36:34Z"
+		},
+		{
+			"checksumSHA1": "YtkqO9PyythyZEqlbxqcF1Jq+f0=",
+			"path": "github.com/jroimartin/gocui",
+			"revision": "c055c87ae801372cd74a0839b972db4f7697ae5f",
+			"revisionTime": "2018-04-11T15:50:10Z"
+		},
+		{
+			"checksumSHA1": "KGCifxxR5cm2gz94i2iha+RIZlk=",
+			"path": "github.com/mattn/go-runewidth",
+			"revision": "ce7b0b5c7b45a81508558cd1dba6bb1e4ddb51bb",
+			"revisionTime": "2018-04-08T05:53:51Z"
+		},
+		{
+			"checksumSHA1": "SvPS4zqZYImMcBu+dLgp6+9eeUo=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "3864e76763d94a6df2f9960b16a20a33da9f9a66",
+			"revisionTime": "2018-05-23T09:45:22Z"
+		},
+		{
+			"checksumSHA1": "L3leymg2RT8hFl5uL+5KP/LpBkg=",
+			"path": "github.com/mitchellh/go-wordwrap",
+			"revision": "ad45545899c7b13c020ea92b2072220eefad42b8",
+			"revisionTime": "2015-03-14T17:03:34Z"
+		},
+		{
+			"checksumSHA1": "0vTf/PbFq4yzdRc4uyzam3YrZvo=",
+			"path": "github.com/nsf/termbox-go",
+			"revision": "3e24a7b6661e09b87a9f49d693034219f81602fa",
+			"revisionTime": "2018-04-07T22:45:25Z"
+		},
+		{
+			"checksumSHA1": "LuFv4/jlrmFNnDb/5SCSEPAM9vU=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/pmezard/go-difflib/difflib",
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "c679ae2cc0cb27ec3293fea7e254e47386f05d69",
+			"revisionTime": "2018-03-14T08:05:35Z"
+		},
+		{
+			"checksumSHA1": "6LwXZI7kXm1C0h4Ui0Y52p9uQhk=",
+			"path": "github.com/stretchr/testify/assert",
+			"revision": "c679ae2cc0cb27ec3293fea7e254e47386f05d69",
+			"revisionTime": "2018-03-14T08:05:35Z"
+		}
+	],
+	"rootPath": "github.com/hazbo/httpu-main"
+}
