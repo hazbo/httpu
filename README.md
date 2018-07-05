@@ -91,6 +91,20 @@ prompt, followed by hitting enter will run that request and you will be able to
 see the response body in the right-hand window. In this case, it will simply
 just return your IP address from which the request has been made.
 
+Keybinding                              | Description
+----------------------------------------|---------------------------------------
+<kbd>Up</kbd>                           | Switch to command mode
+<kbd>Down</kbd>                         | Switch to default mode
+<kbd>Left</kbd>                         | Move cursor to request view
+<kbd>Right</kbd>                        | Move cursor to response view
+<kbd>Ctrl+w</kbd>                       | Move cursor from request / response view to the prompt
+<kbd>Ctrl+s</kbd>                       | Switch the cursor from request view to response view
+<kbd>Ctrl+c</kbd>                       | Quit
+
+To see what commands are available, switch to command mode, then type in `list-commands`.
+
+
+
 ### Advanced usage
 
 httpu is able to look at a JSON response, take a given value and store it in
