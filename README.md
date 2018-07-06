@@ -14,8 +14,7 @@ you are able to see what's being sent, and what response you are then getting.
 #### macOS
 
 ```
-brew tap httpu/httpu
-brew install httpu
+brew install httpu/httpu/httpu
 ```
 
 #### Building from source
