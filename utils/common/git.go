@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	canonical   = "git@github.com:httpu/packages"
+	canonical   = "https://github.com/httpu/packages"
 	localPkgDir = ".httpu/packages"
 )
 
