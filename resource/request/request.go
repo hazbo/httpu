@@ -62,7 +62,7 @@ func (rs *RequestSpec) UnmarshalJSON(j []byte) error {
 	type Alias RequestSpec
 	aux := &struct {
 		Headers []struct {
-			Header string `json:header"`
+			Header string `json:"header"`
 			Value  string `json:"value"`
 		} `json:"headers"`
 		FormData []struct {
