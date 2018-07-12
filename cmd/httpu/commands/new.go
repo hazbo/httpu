@@ -20,6 +20,12 @@ var (
 func newValue(args []string) error {
 	newFlagSet.Parse(args)
 
+	// Handle 0 argument calls
+	if len(args) == 0 {
+		fmt.Printf("Error: Expecting 1 argument, 0 passed\n")
+		os.Exit(1)
+	}
+
 	// Get the first argument for the `new` command
 	p := args[0]
 
@@ -31,11 +37,6 @@ func newValue(args []string) error {
 
 		// If an env file has been passed, this becomes argument 2, over 0.
 		p = args[2]
-	}
-
-	if len(args) == 0 {
-		fmt.Printf("Expecting 1 argument, 0 passed")
-		os.Exit(1)
 	}
 
 	err := httpu.ConfigureFromFile(p)
@@ -51,7 +52,7 @@ func newValue(args []string) error {
 
 var newCmd = &Command{
 	Usage: func(arg0 string) {
-		fmt.Printf("Usage: %s new <package_name> [<options>...]\n\nOptions:\n", arg0)
+		fmt.Printf("Usage: %s new [<options>...] <package_name>\n\nOptions:\n", arg0)
 		newFlagSet.PrintDefaults()
 	},
 	RunMethod: func(args []string) error {
