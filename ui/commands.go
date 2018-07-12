@@ -62,7 +62,7 @@ func (lcc ListCommandsCommand) Execute(g *gocui.Gui, cmd string, args []string) 
 		return fmt.Errorf("list-commands expects 0 arguments, %d passed.", len(args))
 	}
 	RequestView.Clear()
-	// TODO: These should be listed in order, not at random
+	
 	names := make([]string, 0, len(Commands))
 
 	for c, _ := range Commands {

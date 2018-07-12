@@ -6,6 +6,8 @@ import (
 	"github.com/hazbo/httpu/stash"
 )
 
+type parser func(string) string
+
 // Update modifies the request spec to include any data that has recently been
 // added to the stash. If new values exist, the values within the request spec
 // will be added at this point.
@@ -34,73 +36,48 @@ func (rs *RequestSpec) loadDataFiles() {
 	}
 }
 
-// TODO: This is essentially going to be the same for stash vars, stop this code
-// repetition.
-func (rs *RequestSpec) parseEnvVars() {
-	rs.Uri = env.Parse(rs.Uri)
-	rs.Method = env.Parse(rs.Method)
-	rs.Data.contents = []byte(env.Parse(rs.Data.String()))
+func parseVars(parse parser, rs *RequestSpec) {
+	rs.Uri = parse(rs.Uri)
+	rs.Method = parse(rs.Method)
+	rs.Data.contents = []byte(parse(rs.Data.String()))
 
 	for fdk, uv := range rs.FormData {
 		for fdks, uvs := range uv {
-			rs.FormData[fdk][fdks] = env.Parse(uvs)
+			rs.FormData[fdk][fdks] = parse(uvs)
 		}
 	}
 
 	for k, _ := range rs.Headers {
-		rs.Headers[k][0] = env.Parse(rs.Headers[k][0])
+		rs.Headers[k][0] = parse(rs.Headers[k][0])
 	}
 
 	// Do the same as above, for all variants for the given request spec.
 	for vi, _ := range rs.Variants {
-		rs.Variants[vi].Path = env.Parse(rs.Variants[vi].Path)
-		rs.Variants[vi].Data.contents = []byte(env.Parse(rs.Variants[vi].Data.String()))
+		rs.Variants[vi].Path = parse(rs.Variants[vi].Path)
+		rs.Variants[vi].Data.contents = []byte(parse(rs.Variants[vi].Data.String()))
 
 		for i, _ := range rs.Variants[vi].Headers {
-			// TODO: don't just do this for [0]
-			rs.Variants[vi].Headers[i][0] = env.Parse(rs.Variants[vi].Headers[i][0])
+			for t, _ := range rs.Variants[vi].Headers[i] {
+				rs.Variants[vi].Headers[i][t] = parse(rs.Variants[vi].Headers[i][t])
+			}
 		}
 
 		for fdk, uv := range rs.Variants[vi].FormData {
 			for fdks, uvs := range uv {
-				rs.Variants[vi].FormData[fdk][fdks] = env.Parse(uvs)
+				rs.Variants[vi].FormData[fdk][fdks] = parse(uvs)
 			}
 		}
 	}
 }
 
+// parseEnvVars goes through each possible instance of an environment variable
+// existing and replaces the variable name with the new value if it does exist.
+func (rs *RequestSpec) parseEnvVars() {
+	parseVars(env.Parse, rs)
+}
+
 // parseStashVars goes through each possible instance of a stash variable
-// existing and replaces the variable name with the newvalue if it does exist.
+// existing and replaces the variable name with the new value if it does exist.
 func (rs *RequestSpec) parseStashVars() {
-	// Parse any variables within the URI, Method and request data.
-	rs.Uri = stash.Parse(rs.Uri)
-	rs.Method = stash.Parse(rs.Method)
-	rs.Data.contents = []byte(stash.Parse(rs.Data.String()))
-
-	for fdk, uv := range rs.FormData {
-		for fdks, uvs := range uv {
-			rs.FormData[fdk][fdks] = stash.Parse(uvs)
-		}
-	}
-
-	for k, _ := range rs.Headers {
-		rs.Headers[k][0] = stash.Parse(rs.Headers[k][0])
-	}
-
-	// Do the same as above, for all variants for the given request spec.
-	for vi, _ := range rs.Variants {
-		rs.Variants[vi].Path = stash.Parse(rs.Variants[vi].Path)
-		rs.Variants[vi].Data.contents = []byte(stash.Parse(rs.Variants[vi].Data.String()))
-
-		for i, _ := range rs.Variants[vi].Headers {
-			// TODO: don't just do this for [0]
-			rs.Variants[vi].Headers[i][0] = stash.Parse(rs.Variants[vi].Headers[i][0])
-		}
-
-		for fdk, uv := range rs.Variants[vi].FormData {
-			for fdks, uvs := range uv {
-				rs.Variants[vi].FormData[fdk][fdks] = stash.Parse(uvs)
-			}
-		}
-	}
+	parseVars(stash.Parse, rs)
 }
