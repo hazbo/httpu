@@ -1,11 +1,11 @@
+![httpu](docs/header.png)
+
 # httpu
 
 httpu is a terminal first, general purpose HTTP client, designed to get you
 interacting with all aspects of an HTTP API within just a few seconds. This
 makes it a good tool for testing out various endpoints, methods, payloads - so
 you are able to see what's being sent, and what response you are then getting.
-
-![httpu](docs/demo.gif)
 
 ## Getting started
 
