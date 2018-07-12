@@ -3,6 +3,7 @@ package ui
 import (
 	"fmt"
 	"os/exec"
+	"sort"
 
 	"github.com/hazbo/httpu/stash"
 	"github.com/jroimartin/gocui"
@@ -60,9 +61,18 @@ func (lcc ListCommandsCommand) Execute(g *gocui.Gui, cmd string, args []string) 
 	}
 	RequestView.Clear()
 	// TODO: These should be listed in order, not at random
+	names := make([]string, 0, len(Commands))
+
 	for c, _ := range Commands {
-		fmt.Fprintf(RequestView, "%s\n", c)
+		names = append(names, c)
 	}
+
+	sort.Strings(names)
+
+	for _, n := range names {
+		fmt.Fprintf(RequestView, "%s\n", n)
+	}
+
 	return nil
 }
 
