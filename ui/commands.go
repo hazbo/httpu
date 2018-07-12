@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"os/exec"
 
 	"github.com/hazbo/httpu/stash"
 	"github.com/jroimartin/gocui"
@@ -87,6 +88,26 @@ func (wc WelcomeCommand) Execute(g *gocui.Gui, cmd string, args []string) error 
 	return nil
 }
 
+type ShellCommand struct {
+}
+
+func (sc ShellCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	command := exec.Command(args[0])
+
+	for _, v := range args[1:] {
+		command.Args = append(command.Args, v)
+	}
+
+	output, _ := command.CombinedOutput()
+
+	fmt.Fprintf(RequestView, "%s", output)
+
+	return nil
+}
+
 // Commands is a map of all available commands to be used while in command mode.
 var Commands map[string]Command = map[string]Command{
 	"clear":         ClearCommand{},
@@ -94,4 +115,5 @@ var Commands map[string]Command = map[string]Command{
 	"list-commands": ListCommandsCommand{},
 	"stash":         StashCommand{},
 	"welcome":       WelcomeCommand{},
+	"!":             ShellCommand{},
 }
