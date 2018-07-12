@@ -51,7 +51,7 @@ func newValue(args []string) error {
 
 var newCmd = &Command{
 	Usage: func(arg0 string) {
-		fmt.Printf("Usage: %s list [<option>...]\n\nOptions:\n", arg0)
+		fmt.Printf("Usage: %s new <package_name> [<options>...]\n\nOptions:\n", arg0)
 		newFlagSet.PrintDefaults()
 	},
 	RunMethod: func(args []string) error {

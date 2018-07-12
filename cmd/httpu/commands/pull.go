@@ -30,8 +30,11 @@ func pullValue(args []string) error {
 
 var pullCmd = &Command{
 	Usage: func(arg0 string) {
-		fmt.Printf("Usage: %s list [<option>...]\n\nOptions:\n", arg0)
+		fmt.Printf("Usage: %s pull [<options>...]\n\nOptions:\n", arg0)
 		pullFlagSet.PrintDefaults()
+		if flag.NFlag() < 1 {
+			fmt.Println("\tNo options for this command")
+		}
 	},
 	RunMethod: func(args []string) error {
 		return pullValue(args)
