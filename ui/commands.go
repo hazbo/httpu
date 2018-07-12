@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"os/exec"
 	"sort"
+	"strings"
 
 	"github.com/hazbo/httpu/stash"
+	"github.com/hazbo/httpu/env"
 	"github.com/jroimartin/gocui"
 )
 
@@ -118,6 +120,43 @@ func (sc ShellCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
 	return nil
 }
 
+type ListEnvCommand struct {
+}
+
+func (lec ListEnvCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	if len(args) > 0 {
+		return fmt.Errorf("list-env expects 0 arguments, %d passed.", len(args))
+	}
+
+	for _, envVar := range env.List() {
+		fmt.Fprintf(RequestView, "%s\n", envVar)
+	}
+
+	return nil
+}
+
+type SetEnvCommand struct {
+}
+
+func (sec SetEnvCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	if len(args) < 2 {
+		return fmt.Errorf("set-env expects at least 2 arguments, %d passed.", len(args))
+	}
+
+	name := args[0]
+	value := strings.Join(args[1:], " ")
+	env.Set(name, value)
+	fmt.Fprintf(RequestView, "Environment variable %s set to value %q", name, value)
+
+	return nil
+}
+
 // Commands is a map of all available commands to be used while in command mode.
 var Commands map[string]Command = map[string]Command{
 	"clear":         ClearCommand{},
@@ -126,4 +165,6 @@ var Commands map[string]Command = map[string]Command{
 	"stash":         StashCommand{},
 	"welcome":       WelcomeCommand{},
 	"!":             ShellCommand{},
+	"list-env":      ListEnvCommand{},
+	"set-env":       SetEnvCommand{},
 }

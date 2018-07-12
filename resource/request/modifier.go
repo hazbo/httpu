@@ -7,7 +7,7 @@ import (
 )
 
 // Update modifies the request spec to include any data that has recently been
-// assed to the stash. If new values exist, the values within the request spec
+// added to the stash. If new values exist, the values within the request spec
 // will be added at this point.
 func (rs *RequestSpec) Update() {
 	rs.addFormheader()
