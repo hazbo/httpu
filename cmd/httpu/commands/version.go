@@ -19,8 +19,11 @@ func versionValue(args []string) error {
 
 var versionCmd = &Command{
 	Usage: func(arg0 string) {
-		fmt.Printf("Usage: %s list [<option>...]\n\nOptions:\n", arg0)
+		fmt.Printf("Usage: %s version [<option>...]\n\nOptions:\n", arg0)
 		versionFlagSet.PrintDefaults()
+		if flag.NFlag() < 1 {
+			fmt.Println("\tNo options for this command")
+		}
 	},
 	RunMethod: func(args []string) error {
 		return versionValue(args)

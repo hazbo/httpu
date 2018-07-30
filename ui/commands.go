@@ -2,8 +2,12 @@ package ui
 
 import (
 	"fmt"
+	"os/exec"
+	"sort"
+	"strings"
 
 	"github.com/hazbo/httpu/stash"
+	"github.com/hazbo/httpu/env"
 	"github.com/jroimartin/gocui"
 )
 
@@ -58,10 +62,19 @@ func (lcc ListCommandsCommand) Execute(g *gocui.Gui, cmd string, args []string) 
 		return fmt.Errorf("list-commands expects 0 arguments, %d passed.", len(args))
 	}
 	RequestView.Clear()
-	// TODO: These should be listed in order, not at random
+	
+	names := make([]string, 0, len(Commands))
+
 	for c, _ := range Commands {
-		fmt.Fprintf(RequestView, "%s\n", c)
+		names = append(names, c)
 	}
+
+	sort.Strings(names)
+
+	for _, n := range names {
+		fmt.Fprintf(RequestView, "%s\n", n)
+	}
+
 	return nil
 }
 
@@ -87,6 +100,63 @@ func (wc WelcomeCommand) Execute(g *gocui.Gui, cmd string, args []string) error 
 	return nil
 }
 
+type ShellCommand struct {
+}
+
+func (sc ShellCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	command := exec.Command(args[0])
+
+	for _, v := range args[1:] {
+		command.Args = append(command.Args, v)
+	}
+
+	output, _ := command.CombinedOutput()
+
+	fmt.Fprintf(RequestView, "%s", output)
+
+	return nil
+}
+
+type ListEnvCommand struct {
+}
+
+func (lec ListEnvCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	if len(args) > 0 {
+		return fmt.Errorf("list-env expects 0 arguments, %d passed.", len(args))
+	}
+
+	for _, envVar := range env.List() {
+		fmt.Fprintf(RequestView, "%s\n", envVar)
+	}
+
+	return nil
+}
+
+type SetEnvCommand struct {
+}
+
+func (sec SetEnvCommand) Execute(g *gocui.Gui, cmd string, args []string) error {
+	defer cmdBarRefresh(g)
+	RequestView.Clear()
+
+	if len(args) < 2 {
+		return fmt.Errorf("set-env expects at least 2 arguments, %d passed.", len(args))
+	}
+
+	name := args[0]
+	value := strings.Join(args[1:], " ")
+	env.Set(name, value)
+	fmt.Fprintf(RequestView, "Environment variable %s set to value %q", name, value)
+
+	return nil
+}
+
 // Commands is a map of all available commands to be used while in command mode.
 var Commands map[string]Command = map[string]Command{
 	"clear":         ClearCommand{},
@@ -94,4 +164,7 @@ var Commands map[string]Command = map[string]Command{
 	"list-commands": ListCommandsCommand{},
 	"stash":         StashCommand{},
 	"welcome":       WelcomeCommand{},
+	"!":             ShellCommand{},
+	"list-env":      ListEnvCommand{},
+	"set-env":       SetEnvCommand{},
 }

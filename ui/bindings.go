@@ -172,13 +172,15 @@ func cmdEnter(g *gocui.Gui, v *gocui.View) error {
 
 	cmdName, args := parts[0], parts[1:]
 
-	// TODO: Report an error here if the command is not found
 	if cmd, ok := Commands[cmdName]; ok {
 		err := cmd.Execute(g, cmdName, args)
 		if err != nil {
 			rv, _ := g.View(requestView)
 			fmt.Fprintf(rv, "%s\n", err)
 		}
+	} else {
+		rv, _ := g.View(requestView)
+		fmt.Fprintf(rv, "Error, Unknown command: %q", cmdName)
 	}
 	return nil
 }
